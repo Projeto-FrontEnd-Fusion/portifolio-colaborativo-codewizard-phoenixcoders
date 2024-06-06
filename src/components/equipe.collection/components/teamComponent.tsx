@@ -115,6 +115,7 @@ interface TeamProjectContentItem {
     className?: string
 }
 export const TeamProjectContentItem = ({ src, className, alt }: TeamProjectContentItem) => {
+    
     return (
         <a href="" target="_blank" className="" >
             <img
