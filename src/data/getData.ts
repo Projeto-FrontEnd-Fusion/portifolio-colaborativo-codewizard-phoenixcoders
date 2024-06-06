@@ -29,7 +29,7 @@ export type TeamType = {
   people: Person[];
 };
 
-//função criada para realizar o fetch dos dados 
+//função criada para realizar o fetch dos dados e faz cache para caso for usada em outra parte não seja preciso fazer requisição de novo.
 export const getTeamData = async (): Promise<TeamType>=>{
   try {
     const response = await fetch('https://sistema-cadastro-dados-portifolio-front-end-fusion.vercel.app/api/PhoenixCoders', { cache: 'force-cache' });
