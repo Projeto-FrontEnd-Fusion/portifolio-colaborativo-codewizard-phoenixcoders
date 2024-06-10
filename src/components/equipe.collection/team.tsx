@@ -20,47 +20,30 @@ import {
   TeamProjectContentItem
 } from "./components/teamComponent";
 import { Button } from "./components/ui/button";
+import { TeamType, getTeamData } from "../../data/getData";
 
-interface Person {
-  name: string;
-  imageUrl: string;
-  subTitle: string;
-  text: string;
-  socials: {
-    githubUrl: string;
-    linkedinUrl: string;
-    instagramUrl: string;
-    facebookUrl: string;
-  };
-  projects: [
-    {
-      url: string,
-      alt: string
-    }
-  ]
-}
+
 
 export default function OurTeam() {
-  const [data, setData] = useState<Person[]>()
-
+  const [data, setData] = useState<TeamType>()
+//useffect para chamar função que faz o fetch dos dados na api e salvar com uso do usestate
   useEffect(() => {
     const dataFethc = async () => {
-      const response = await fetch('/src/data/team.json');
-      const dataJson = await response.json() as Person[];
-      setData(dataJson);
+      const data = await getTeamData()
+      setData(data)
     }
     dataFethc()
   }, [])
   return (
-    // TODO: Quando subir produção mudar key dos dados para url para nao usar o index
     <section className=" min-h-screen container mx-auto px-4 pb-6">
       <Heading className="py-4 mb-16" hilight>
         Desenvolvedores FrontEnd
       </Heading>
       <div className="space-y-14">
-        {data?.map((team,index) => (
-          <Team key={index}>
-            <TeamPersonalMain imagerUrl={team.imageUrl}>
+      
+        {data?.people.map((team) => (
+          <Team key={team.id}>
+            <TeamPersonalMain imagerUrl={team.githubImgUrl}>
               <TeamName>
                 {team.name}
               </TeamName>
@@ -68,16 +51,16 @@ export default function OurTeam() {
                 {team.subTitle}
               </TeamSubtitle>
               <TeamPersonalSocial>
-                <TeamPersonalSocialIcon href={team.socials.githubUrl}>
+                <TeamPersonalSocialIcon href={team.githubUrl}>
                   <GithubIcon />
                 </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.socials.linkedinUrl}>
+                <TeamPersonalSocialIcon href={team.linkedinUrl}>
                   <LinkedinIcon />
                 </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.socials.instagramUrl}>
+                <TeamPersonalSocialIcon href={team.instagramUrl}>
                   <InstagramIcon />
                 </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.socials.facebookUrl}>
+                <TeamPersonalSocialIcon href={team.facebookUrl}>
                   <FacebookIcon />
                 </TeamPersonalSocialIcon>
               </TeamPersonalSocial>
@@ -91,11 +74,11 @@ export default function OurTeam() {
                 <Button>Habilidades</Button>
               </TeamProjectHeader>
               <TeamProjectContent>
-                {team.projects.map((project,index) => (
+                {team.projects.map((project) => (
                   <TeamProjectContentItem
-                    alt={project.alt}
-                    src={project.url}
-                    key={index}
+                    alt={project.projectUrl}
+                    src={project.projectUrl}
+                    key={project.id}
                   />
                 ))}
               </TeamProjectContent>

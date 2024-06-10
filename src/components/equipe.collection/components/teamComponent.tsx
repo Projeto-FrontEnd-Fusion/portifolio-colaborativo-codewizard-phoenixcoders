@@ -48,7 +48,11 @@ export const TeamPersonalMain = ({ children, className, imagerUrl }: TeamPersona
                             imagerUrl
                             :
                             "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
-                    } alt="" />
+                    } alt=""
+                    onError={(e)=>{
+                        e.currentTarget.onerror=null
+                        e.currentTarget.src='https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ='
+                    }} />
             </div>
             <div className="w-full flex flex-col items-center md:items-start ">
                 {children}
@@ -111,6 +115,7 @@ interface TeamProjectContentItem {
     className?: string
 }
 export const TeamProjectContentItem = ({ src, className, alt }: TeamProjectContentItem) => {
+    
     return (
         <a href="" target="_blank" className="" >
             <img
@@ -121,6 +126,10 @@ export const TeamProjectContentItem = ({ src, className, alt }: TeamProjectConte
                         :
                         "https://t4.ftcdn.net/jpg/03/88/63/83/360_F_388638369_wSBADhKfhiTx6Q5Pz1xfdpy6zotku1Sg.jpg"
                 }
+                onError={(e)=>{
+                    e.currentTarget.onerror=null
+                    e.currentTarget.src='https://t4.ftcdn.net/jpg/03/88/63/83/360_F_388638369_wSBADhKfhiTx6Q5Pz1xfdpy6zotku1Sg.jpg'
+                }}
                 alt={alt}
             />
         </a>
