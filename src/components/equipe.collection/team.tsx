@@ -51,18 +51,32 @@ export default function OurTeam() {
                 {team.subTitle}
               </TeamSubtitle>
               <TeamPersonalSocial>
-                <TeamPersonalSocialIcon href={team.githubUrl}>
-                  <GithubIcon />
-                </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.linkedinUrl}>
-                  <LinkedinIcon />
-                </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.instagramUrl}>
-                  <InstagramIcon />
-                </TeamPersonalSocialIcon>
-                <TeamPersonalSocialIcon href={team.facebookUrl}>
-                  <FacebookIcon />
-                </TeamPersonalSocialIcon>
+
+                {team.githubUrl && 
+                  <TeamPersonalSocialIcon href={team.githubUrl}>
+                    <GithubIcon />
+                  </TeamPersonalSocialIcon>
+                }
+                
+
+                {team.linkedinUrl && 
+                  <TeamPersonalSocialIcon href={team.linkedinUrl}>
+                    <LinkedinIcon />
+                  </TeamPersonalSocialIcon>
+                }
+                
+                {team.instagramUrl && 
+                  <TeamPersonalSocialIcon href={team.instagramUrl}>
+                    <InstagramIcon />
+                  </TeamPersonalSocialIcon>
+                }
+
+                {team.facebookUrl &&  
+                  <TeamPersonalSocialIcon href={team.facebookUrl}>
+                    <FacebookIcon />
+                  </TeamPersonalSocialIcon>
+                }
+               
               </TeamPersonalSocial>
               <TeamPersonalAboutText>
                 {team.text}
